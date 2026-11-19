@@ -6,14 +6,14 @@ Consignes pour les agents (Claude Code, Codex…) qui travaillent sur ce dépôt
 
 - « Permis IA en 9 fiches » : 9 fiches interactives en 3 parties, et une page d'accueil, écrites en FALC. C'est une ressource [Skazy Formation](https://formation.skazy.nc/).
 - Pages HTML statiques, sans étape de build. Chaque page est autonome : son CSS et son JS sont dans le fichier.
-- En ligne avec GitHub Pages, depuis la branche `gh-pages` : https://gharel.github.io/simulateur-ia/
+- En ligne avec GitHub Pages, depuis la branche `gh-pages` : https://gharel.github.io/permis-ia/
 
 ## Fichiers
 
 - `index.html` : l'accueil, la progression, le permis à imprimer.
 - `1-tokens.html` à `9-forfait-api.html` : les fiches, dans l'ordre du parcours.
 - `2-modele-effort.html`, `3-hallucinations.html`, `4-boite-outils.html`, `5-forfait-api.html` : les adresses du parcours en 6 fiches. `8-forfait-api.html` : celle du parcours en 8 fiches. Ce sont de petites pages qui renvoient vers la nouvelle fiche, en gardant `?atelier=1` et `?demo=1`. Ne les supprime pas : des liens circulent.
-- `favicon.svg` : l'icône de l'onglet, des curseurs (`sliders` de Font Awesome) en blanc sur un dégradé bleu (de `#29c9fa` à `#135ae4`), la couleur de l'outil (voir « Bandeau et titres » plus bas). Elle sert aussi de pastille dans le bandeau. `favicon-32.png` et `apple-touch-icon.png` (180 px, carré plein : iOS arrondit lui-même les coins) en sont des copies, pour Safari et l'écran d'accueil des téléphones : refais-les si le favicon change. Les liens sont relatifs, pour marcher sous `/simulateur-ia/` sur GitHub Pages.
+- `favicon.svg` : l'icône de l'onglet, des curseurs (`sliders` de Font Awesome) en blanc sur un dégradé bleu (de `#29c9fa` à `#135ae4`), la couleur de l'outil (voir « Bandeau et titres » plus bas). Elle sert aussi de pastille dans le bandeau. `favicon-32.png` et `apple-touch-icon.png` (180 px, carré plein : iOS arrondit lui-même les coins) en sont des copies, pour Safari et l'écran d'accueil des téléphones : refais-les si le favicon change. Les liens sont relatifs, pour marcher sous `/permis-ia/` sur GitHub Pages.
 - `les-outils.svg` : la roue des outils Skazy Formation, l'icône du lien « Les outils » dans le bandeau. C'est une copie du favicon de la page Les outils (dépôt `home`, `site/favicon.svg`) : ne la remplace pas par un lien vers le fichier en ligne.
 - `tests/` : les tests Playwright. `playwright.config.js` les lance sur bureau (1280 px) et sur téléphone (Pixel 7).
 - `README.md` : le contenu des fiches et le mode d'emploi des icônes.
@@ -105,11 +105,11 @@ npm test
 3. Lance `npm run deploy`. Il relance les tests, puis pousse le même commit sur `gh-pages`, puis sur `main`. GitHub Pages republie le site en 1 à 2 minutes.
 
 - Jamais de `--force`.
-- Pousse `gh-pages` seul, dans son propre push. Un push de 3 branches d'un coup n'a pas déclenché la publication. Pour vérifier qu'elle est partie : https://github.com/gharel/simulateur-ia/actions (« pages build and deployment »).
+- Pousse `gh-pages` seul, dans son propre push. Un push de 3 branches d'un coup n'a pas déclenché la publication. Pour vérifier qu'elle est partie : https://github.com/gharel/permis-ia/actions (« pages build and deployment »).
 - Si le push est refusé parce que le dépôt distant a avancé : récupère les changements (`git fetch`, puis rebase), relance les tests, puis pousse.
 - Si le port 22 (SSH) est bloqué, passe par le port 443 :
 
   ```bash
-  git push ssh://git@ssh.github.com:443/gharel/simulateur-ia.git HEAD:gh-pages
-  git push ssh://git@ssh.github.com:443/gharel/simulateur-ia.git HEAD:main
+  git push ssh://git@ssh.github.com:443/gharel/permis-ia.git HEAD:gh-pages
+  git push ssh://git@ssh.github.com:443/gharel/permis-ia.git HEAD:main
   ```
