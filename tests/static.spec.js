@@ -53,7 +53,7 @@ test("bandeau Skazy Formation : le même ordre et les mêmes liens sur toutes le
   const right = [
     '<button type="button" class="brand-theme" id="themeBtn" aria-label="Thème&nbsp;: celui du système. Changer de thème" title="Thème&nbsp;: celui du système. Changer de thème">'
       + '<i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i><i class="fa-solid fa-sun" aria-hidden="true"></i><i class="fa-solid fa-moon" aria-hidden="true"></i></button>',
-    '<a class="brand-outils" href="https://gharel.github.io/home/" title="Tous les outils Skazy Formation"><img src="les-outils.svg" width="26" height="26" alt=""><span class="brand-txt">Les outils</span></a>',
+    '<a class="brand-outils" href="https://gharel.github.io/pro/" title="Tous les outils Skazy Formation"><img src="les-outils.svg" width="26" height="26" alt=""><span class="brand-txt">Les outils</span></a>',
     '<span class="brand-sep" aria-hidden="true"></span>',
     `<a class="brand-skazy" href="${SKAZY}" target="_blank" rel="noopener" aria-label="Site de Skazy Formation (nouvel onglet)">`,
     "<svg logo>",

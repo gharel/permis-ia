@@ -33,7 +33,7 @@ for (const f of PAGES) {
       if (!isMobile || f === "index.html") await expect(tool.locator(".brand-name")).toBeVisible();
       // « Les outils » : la page de tous les outils Skazy Formation, dans le même onglet. Sur téléphone, il garde sa roue.
       const tools = page.locator(".brand > a.brand-outils");
-      await expect(tools).toHaveAttribute("href", "https://gharel.github.io/home/");
+      await expect(tools).toHaveAttribute("href", "https://gharel.github.io/pro/");
       expect(await tools.getAttribute("target")).toBeNull();
       await expect(tools).toHaveAccessibleName("Les outils");
       await expect(tools.locator('img[src="les-outils.svg"]')).toBeVisible();

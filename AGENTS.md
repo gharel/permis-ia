@@ -14,7 +14,7 @@ Consignes pour les agents (Claude Code, Codex…) qui travaillent sur ce dépôt
 - `1-tokens.html` à `9-forfait-api.html` : les fiches, dans l'ordre du parcours.
 - `2-modele-effort.html`, `3-hallucinations.html`, `4-boite-outils.html`, `5-forfait-api.html` : les adresses du parcours en 6 fiches. `8-forfait-api.html` : celle du parcours en 8 fiches. Ce sont de petites pages qui renvoient vers la nouvelle fiche, en gardant `?atelier=1` et `?demo=1`. Ne les supprime pas : des liens circulent.
 - `favicon.svg` : l'icône de l'onglet, des curseurs (`sliders` de Font Awesome) en blanc sur un dégradé bleu (de `#29c9fa` à `#135ae4`), la couleur de l'outil (voir « Bandeau et titres » plus bas). Elle sert aussi de pastille dans le bandeau. `favicon-32.png` et `apple-touch-icon.png` (180 px, carré plein : iOS arrondit lui-même les coins) en sont des copies, pour Safari et l'écran d'accueil des téléphones : refais-les si le favicon change. Les liens sont relatifs, pour marcher sous `/permis-ia/` sur GitHub Pages.
-- `les-outils.svg` : la roue des outils Skazy Formation, l'icône du lien « Les outils » dans le bandeau. C'est une copie du favicon de la page Les outils (dépôt `home`, `site/favicon.svg`) : ne la remplace pas par un lien vers le fichier en ligne.
+- `les-outils.svg` : la roue des outils Skazy Formation, l'icône du lien « Les outils » dans le bandeau. C'est une copie du favicon de la page Les outils (dépôt `pro`, `site/favicon.svg`) : ne la remplace pas par un lien vers le fichier en ligne.
 - `tests/` : les tests Playwright. `playwright.config.js` les lance sur bureau (1280 px) et sur téléphone (Pixel 7).
 - `README.md` : le contenu des fiches et le mode d'emploi des icônes.
 
@@ -90,7 +90,7 @@ npm test
     1. le bouton « Accueil » (fiches seulement), puis un filet ;
     2. la signature de l'outil, un seul lien vers `index.html` : la pastille (`<img src="favicon.svg" width="28" height="28" alt="">`, décorative) et le nom « Permis IA » en gras. Sur l'accueil, ce lien porte `aria-current="page"` ;
     3. à droite, les actions de l'outil : ici, le bouton du thème (voir « Thème »), un bouton carré à bord, comme Accueil ;
-    4. « Les outils » : un lien vers https://gharel.github.io/home/, dans le même onglet, avec la roue (`les-outils.svg`) ;
+    4. « Les outils » : un lien vers https://gharel.github.io/pro/, dans le même onglet, avec la roue (`les-outils.svg`) ;
     5. un filet, puis le logo Skazy Formation, le dernier élément du bandeau. Son lien vers `https://formation.skazy.nc/` (avec la barre oblique finale) s'ouvre dans un nouvel onglet et ne contient que le logo.
   - Le logo est un SVG intégré dans chaque page. Ne le redessine pas, ne le recolore pas.
   - Sur téléphone et petite tablette (720 px et moins), la pastille et les icônes restent. « Les outils » ne garde que sa roue, le bouton du thème passe de 44 à 40 px, et le nom de l'outil laisse la place au bouton Accueil (fiches). À 480 px et moins, les éléments se rapprochent et le bouton Accueil ne garde que sa maison. L'accueil ne cache le nom que sous 400 px. Rien ne dépasse à 360 px.
