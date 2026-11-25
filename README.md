@@ -132,4 +132,4 @@ Les tests Playwright ouvrent chaque page sur bureau et sur téléphone. Ils vér
 
 Les pages ont leur propre thème sombre. Un script dans le `<head>` pose le thème choisi (`data-theme="light"` ou `"dark"` sur `<html>`) avant l'affichage : sans choix, la page suit le système. Le thème clair choisi a `color-scheme: only light`. Les pages demandent aussi aux modes nuit forcés (mode nuit de Brave, extension Dark Reader) de ne pas changer leurs couleurs, avec `<meta name="darkreader-lock">`.
 
-`npm run deploy` relance les tests, puis pousse sur `main` et sur `gh-pages` (le site GitHub Pages). Les consignes complètes pour les agents sont dans [AGENTS.md](AGENTS.md).
+`npm run deploy` relance les tests, puis pousse sur `main` : le workflow `.github/workflows/publier.yml` publie alors sur GitHub Pages les pages et leurs images, et rien d'autre. Les consignes complètes pour les agents sont dans [AGENTS.md](AGENTS.md).

@@ -6,7 +6,7 @@ Consignes pour les agents (Claude Code, Codex…) qui travaillent sur ce dépôt
 
 - « Permis IA en 9 fiches » : 9 fiches interactives en 3 parties, et une page d'accueil, écrites en FALC. C'est une ressource [Skazy Formation](https://formation.skazy.nc/).
 - Pages HTML statiques, sans étape de build. Chaque page est autonome : son CSS et son JS sont dans le fichier.
-- En ligne avec GitHub Pages, depuis la branche `gh-pages` : https://gharel.github.io/permis-ia/
+- En ligne avec GitHub Pages, publié par le workflow `.github/workflows/publier.yml` à chaque push sur `main` : https://gharel.github.io/permis-ia/
 
 ## Fichiers
 
@@ -39,9 +39,10 @@ npm test
   - `BADGES` et `CONFETTI_COLORS` (bloc commun) ;
   - `index.html` : la carte, `BADGES`, `FILES`, `COLORS`, la bande de couleurs du permis ;
   - dans chaque fiche : « Fiche N sur 9 », le menu du bas, la carte « Fiche suivante » ;
-  - `FICHES` dans `tests/site.js`.
+  - `FICHES` dans `tests/site.js` ;
+  - la liste des fichiers publiés dans `.github/workflows/publier.yml`.
 
-  Si une adresse change, laisse une page de redirection et ajoute-la à `MOVED` dans `tests/site.js`. Pour renvoyer vers une autre fiche, écris son nom (« voir « Le Sac à Tokens » »), pas son numéro.
+  Si une adresse change, laisse une page de redirection et ajoute-la à `MOVED` dans `tests/site.js` et à la liste de `.github/workflows/publier.yml`. Pour renvoyer vers une autre fiche, écris son nom (« voir « Le Sac à Tokens » »), pas son numéro.
 - **Pas d'emoji.** Le © de la mention légale est permis : c'est un signe typographique. Les icônes viennent de Font Awesome 7 Free, style Solid :
   - dans le HTML : `<i class="fa-solid fa-coins" aria-hidden="true"></i>` ;
   - dans un texte JS : `{coins}`, affiché avec `rich(el, texte)` ou `h(tag, classe, texte)` ;
@@ -102,14 +103,14 @@ npm test
 
 1. `npm test` doit passer en entier.
 2. Fais un commit, avec un message en français.
-3. Lance `npm run deploy`. Il relance les tests, puis pousse le même commit sur `gh-pages`, puis sur `main`. GitHub Pages republie le site en 1 à 2 minutes.
+3. Lance `npm run deploy`. Il relance les tests, puis pousse sur `main`. Le workflow `.github/workflows/publier.yml` publie alors le site en 1 à 2 minutes. Pour vérifier qu'il est passé : https://github.com/gharel/permis-ia/actions (« Publier sur GitHub Pages »).
 
+- Seuls les fichiers de la liste du workflow sont publiés : les pages `*.html` et leurs images (`favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`, `les-outils.svg`). `AGENTS.md`, `CLAUDE.md`, `README.md`, `tests/` et `package.json` restent dans le dépôt, hors du site. Une nouvelle page ou une nouvelle image s'ajoute à cette liste : le test « la publication sur GitHub Pages ne prend que les pages et leurs images » (`tests/static.spec.js`) le vérifie.
+- La source de GitHub Pages est « GitHub Actions » (Settings > Pages) : la branche `gh-pages` ne sert plus, ne pousse plus dessus.
 - Jamais de `--force`.
-- Pousse `gh-pages` seul, dans son propre push. Un push de 3 branches d'un coup n'a pas déclenché la publication. Pour vérifier qu'elle est partie : https://github.com/gharel/permis-ia/actions (« pages build and deployment »).
 - Si le push est refusé parce que le dépôt distant a avancé : récupère les changements (`git fetch`, puis rebase), relance les tests, puis pousse.
 - Si le port 22 (SSH) est bloqué, passe par le port 443 :
 
   ```bash
-  git push ssh://git@ssh.github.com:443/gharel/permis-ia.git HEAD:gh-pages
   git push ssh://git@ssh.github.com:443/gharel/permis-ia.git HEAD:main
   ```

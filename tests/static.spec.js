@@ -169,3 +169,12 @@ test("chaque ancienne adresse renvoie vers une fiche qui existe", () => {
     expect(read(old), old).toContain(`<meta http-equiv="refresh" content="0; url=${to}">`);
   }
 });
+
+test("la publication sur GitHub Pages ne prend que les pages et leurs images", () => {
+  const etape = read(".github/workflows/publier.yml").split("cp index.html")[1].split('"$RUNNER_TEMP/site/"')[0];
+  const publies = ("index.html " + etape).replace(/\\/g, " ").split(/\s+/).filter(Boolean).sort();
+  const pages = fs.readdirSync(ROOT).filter((f) => f.endsWith(".html"));
+  const attendus = [...pages, "favicon.svg", "favicon-32.png", "apple-touch-icon.png", "les-outils.svg"].sort();
+  expect(publies).toEqual(attendus);
+  expect([...PAGES, ...Object.keys(MOVED)].sort()).toEqual(pages.sort());
+});

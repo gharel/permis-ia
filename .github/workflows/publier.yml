@@ -1,0 +1,50 @@
+# À chaque push sur main : on publie le site sur GitHub Pages.
+# Seules les pages et leurs images sont publiées (liste blanche ci-dessous) : ni AGENTS.md,
+# ni CLAUDE.md, ni README.md, ni tests/, ni package.json. Une nouvelle page ou une nouvelle image
+# doit être ajoutée à la liste (tests/static.spec.js le vérifie).
+# Les tests ne tournent pas ici : `npm run deploy` les lance avant de pousser.
+name: Publier sur GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publier:
+    name: Publication sur GitHub Pages
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Préparer le site (liste blanche des fichiers publiés)
+        run: |
+          mkdir "$RUNNER_TEMP/site"
+          cp index.html \
+            1-tokens.html 2-memoire.html 3-modele-effort.html 4-hallucinations.html \
+            5-complaisance.html 6-message-piege.html 7-boite-outils.html 8-agent.html \
+            9-forfait-api.html \
+            2-modele-effort.html 3-hallucinations.html 4-boite-outils.html 5-forfait-api.html \
+            8-forfait-api.html \
+            favicon.svg favicon-32.png apple-touch-icon.png les-outils.svg \
+            "$RUNNER_TEMP/site/"
+          ls -l "$RUNNER_TEMP/site"
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: ${{ runner.temp }}/site
+      - id: deploiement
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
